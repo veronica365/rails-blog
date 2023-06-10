@@ -46,13 +46,16 @@ The Blog app will be a classic example of a blog website. You will create a full
 
 ### Key Features <a name="key-features"></a>
 
-- Users will create new blog posts. 
-- Users will view blog posts on the application's home page.
-- Users will delete their own blog posts.
-- Users will comment on blog posts and reply to comments
-- Users will view total comments on blog posts
-- Users will like blog posts
-- Users will view total likes on a blog post
+- **Database schema for the blog app**
+- **Model Classes for the current schema**
+- **Unit Tests to test the current functionality** 
+- **Users will create new blog posts**
+- **Users will view blog posts on the application's home page**
+- **Users will delete their own blog posts.**
+- **Users will comment on blog posts and reply to comments**
+- **Users will view total comments on blog posts**
+- **Users will like blog posts**
+- **Users will view total likes on a blog post**
 
 <p align="right">(<a href="#readme-top"></a>)</p>
 
@@ -112,7 +115,9 @@ To run the project, execute the following command:
 
 To run tests, run the following command: Install through : gem install rspec
 
-... Coming soon
+```sh
+  rspec
+```
 
 ### Deployment
 
@@ -133,7 +138,7 @@ You can deploy this project using:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add more functionality and tests**
+- [ ] **Add UI functionality to make crud on blog posts**
 
 <p align="right">(<a href="#readme-top"></a>)</p>
 
