@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
     @blog.title = nil
     expect(@blog).to_not be_valid
 
-    @blog.title = ""
+    @blog.title = ''
     expect(@blog).to_not be_valid
   end
 
