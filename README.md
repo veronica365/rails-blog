@@ -48,14 +48,9 @@ The Blog app will be a classic example of a blog website. You will create a full
 
 - **Database schema for the blog app**
 - **Model Classes for the current schema**
-- **Unit Tests to test the current functionality** 
-- **Users will create new blog posts**
-- **Users will view blog posts on the application's home page**
-- **Users will delete their own blog posts.**
-- **Users will comment on blog posts and reply to comments**
-- **Users will view total comments on blog posts**
-- **Users will like blog posts**
-- **Users will view total likes on a blog post**
+- **Unit Tests to test the current functionality**
+- **A user controller to show users and user by id**
+- **A post controller to show posts and posts by id**
 
 <p align="right">(<a href="#readme-top"></a>)</p>
 
@@ -101,6 +96,11 @@ create database in your postgresql with:
 Run migration with:
 ```sh
   rails db:migrate
+```
+
+Run test to see routes with:
+```sh
+  rails routes -g #pattern of route to see ie: users
 ```
 
 ### Usage
