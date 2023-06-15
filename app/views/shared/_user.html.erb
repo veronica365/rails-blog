@@ -1,0 +1,12 @@
+<%# Renders a user detail %>
+<article class='article'>
+    <%= link_to user_path(id: user.id) do  %>
+        <div class="image">
+            <img src="<%= user.photo %>" alt="<%= user.name %>" />
+        </div>
+        <div class="body">
+            <h4><%= user.name %></h4>
+            <div class="counter">Number of posts: <%= user.post_counter %></div>
+        </div>
+    <% end %>
+</article>

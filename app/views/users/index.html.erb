@@ -1,9 +1,9 @@
-<h1>Here is a lists of users</h1>
-
-<ul>
-    <li><a href="/users">Users</a></li>
-    <li><a href="/users/id">Users by id</a></li>
-    <li><a href="/users/id/posts">Posts for a users with given id</a></li>
-    <li><a href="/users/id/posts/id">Posts by given id for a users by given id</a></li>
-</ul>
-
+<% if @users.empty? %>
+    <%= render 'errors/404', value: 'There are no registered users at the moment' %>
+<% else %>
+    <section class='userlist'>
+        <% @users.each do | user | %>
+            <%= render "shared/user", user: user %>
+        <% end %>
+    </section>
+<% end %>
