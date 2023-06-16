@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     @like = @current_post.likes.new(author_id: @current_user.id, post_id: @current_post.id)
 
     if @like.save
-      redirect_to "/users/#{@current_user.id}/posts/#{@current_post.id}"
+      redirect_to "/users/#{@current_post.author.id}/posts/#{@current_post.id}"
     else
       render.new
     end
@@ -23,7 +23,7 @@ class LikesController < ApplicationController
       @postid = nil
     end
 
-    return redirect_to "/users/#{@current_user.id}/posts" if @postid != nil
+    return redirect_to "/users/#{@current_user.id}/posts" if @postid.nil?
 
     @current_post = Post.find(@postid)
   end

@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       @postid = nil
     end
 
-    return redirect_to "/users/#{@current_user.id}/posts" if @postid != nil
+    return redirect_to "/users/#{@current_user.id}/posts" if @postid.nil?
 
     @current_post = Post.find(@postid)
   end
