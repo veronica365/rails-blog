@@ -5,6 +5,13 @@
     <section class='userlist'>
         <%= render 'shared/user', user: @user %>
     </section>
+
+    <section class='userlist'>
+        <div class ="d-flex align-items-center justify-content-between">
+            <h4>Posts</h4>
+            <%= link_to "Create post", new_user_post_path(user_id: @user.id), class:"btn btn-outline-dark btn-default" %>
+        </div>
+    </section>
     <%= render "shared/posts", user: @user, posts: @posts, view_more: false %>
     <div class="links">
         <div class="button-links">
