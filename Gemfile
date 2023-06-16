@@ -8,6 +8,9 @@ gem 'rails', '~> 7.0.5'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem "bootstrap-sass"
+gem "bootstrap_form", "~> 5.2"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 

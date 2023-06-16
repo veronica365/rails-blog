@@ -17,5 +17,13 @@
     <article class='comment'>
         <%= render "posts/shared/comments", comments: @post.comments %>
     </article>
+    <div class="d-flex align-items-center justify-content-end">
+        <%= link_to "Add Comment", new_user_post_comment_path(@current_user.id, @post.id), class:"btn btn-default btn-outline-dark mr-3" %>
+        <div class="d-flex align-items-center">
+            <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |f| %>
+            <%= f.submit "Like", class:"btn btn-outline-dark" %>
+            <% end %>
+        </div>
+    </div>
 </section>
 <% end %>
