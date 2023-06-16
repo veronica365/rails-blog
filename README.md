@@ -11,7 +11,6 @@ In this project, you will start building blog website app.
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
-  - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -118,12 +117,6 @@ To run tests, run the following command: Install through : gem install rspec
 ```sh
   rspec
 ```
-
-### Deployment
-
-You can deploy this project using:
-
-- ... Coming soon
 
 <p align="right">(<a href="#readme-top"></a>)</p>
 
