@@ -14,123 +14,131 @@
  *= require_self
  */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 body {
-    font-family: 'Roboto', sans-serif;
-    color: #000;
-    background-color: #fff;
-    --black: #000;
-    margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+  background-color: #fff;
+
+  --black: #000;
+
+  margin: 0;
 }
 
 a:link,
 a:active,
 a:visited {
-    text-decoration: none;
-    color: var(--black);
+  text-decoration: none;
+  color: var(--black);
 }
 
 p {
-    line-height: 150%;
+  line-height: 150%;
 }
 
 img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .bio,
 .posts,
 .userlist {
-    padding: 15px;
+  padding: 15px;
 }
 
 .bio,
 .posts {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 .detail {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .detail-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-links,
+.posts .post,
+.bio .body {
+  border: 1px solid var(--black);
 }
 
 .posts .post,
 .button-links,
 .bio .body,
 .posts .comment .body {
-    padding: 10px;
+  padding: 10px;
 }
 
 .posts .post,
 .userlist .article,
 .posts .comment .body {
-    margin-bottom: 20px;
-}
-.posts .comment .body {
-    margin-top: -15px;
+  margin-bottom: 20px;
 }
 
-.posts .post:last-child,
-.userlist .article:last-child {
-    margin-bottom: 0;
+.posts .comment .body {
+  margin-top: -15px;
+}
+
+.posts .comment .body,
+.userlist .article a .body,
+.userlist .article a .image {
+  border: 1px solid var(--black);
 }
 
 .posts .post a,
 .userlist .article a {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.bio .body,
-.posts .post,
-.button-links,
-.posts .comment .body,
-.userlist .article a .body,
-.userlist .article a .image {
-    border: 1px solid var(--black);
+.posts .post:last-child,
+.userlist .article:last-child {
+  margin-bottom: 0;
 }
 
 .userlist .article a .image {
-    width: 105px;
-    overflow: hidden;
-    height: 100px;
+  width: 105px;
+  overflow: hidden;
+  height: 100px;
 }
+
 .posts .post a .body,
 .userlist .article a .body {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    padding: 0 10px;
-    position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 0 10px;
+  position: relative;
 }
 
 .posts .post a .body {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 0;
-    padding: 0
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 0;
+  padding: 0;
 }
 
-.userlist .article a .body h4{
-    font-weight: bold;
-    font-size: large;
+.userlist .article a .body h4 {
+  font-weight: bold;
+  font-size: large;
 }
 
 .posts .post .body .counter,
 .userlist .article a .body .counter {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

@@ -4,13 +4,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    userid = params[:id]
     begin
-      userid = params[:id]
-      @user = Integer(userid) rescue nil
+      @user = Integer(userid)
+    rescue ArgumentError
+      @user = nil
+    end
+
+    begin
       return @user if @user.nil?
 
       @user = User.find(userid)
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       @user = nil
     end
   end
