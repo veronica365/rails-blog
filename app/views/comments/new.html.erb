@@ -5,6 +5,6 @@
       <%= form.text_area :text, size:"50x3",placeholder: 'Like: great read', class:'form-control'%>
     </div>
     <%= form.submit "Submit", class:'btn btn-dark' %>
-    <%= link_to "Cancel", user_post_path(user_id: @current_user.id, id: @current_post.id), class:"btn btn-default btn-outline-dark" %>
+    <%= link_to "Cancel", user_post_path(user_id: @current_post.author.id, id: @current_post.id), class:"btn btn-default btn-outline-dark" %>
   <% end %>
 </div>
