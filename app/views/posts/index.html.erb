@@ -1,6 +1,6 @@
 
 <% if @posts.nil? %>
-    <%= render 'errors/404', value: 'The specified user has no created blog posts' %>
+    <%= render 'errors/404', value: 'The specified user has no created blog posts', header: true %>
 <% else %>
     <section class='userlist'>
         <%= render 'shared/user', user: @user %>

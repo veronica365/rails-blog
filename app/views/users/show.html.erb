@@ -1,5 +1,5 @@
 <% if @user.nil? %>
-    <%= render 'errors/404', value: 'There is no details about the specified user' %>
+    <%= render 'errors/404', value: 'There is no details about the specified user', header: true %>
 <% else %>
     <section class='userlist'>
         <%= render 'shared/user', user: @user %>
