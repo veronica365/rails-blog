@@ -26,6 +26,7 @@ a:link,
 a:active,
 a:visited {
     text-decoration: none;
+    color: var(--black);
 }
 
 p {
@@ -37,25 +38,58 @@ img {
     height: auto;
 }
 
+.bio,
+.posts,
 .userlist {
     padding: 15px;
 }
 
-.userlist .article a {
+.bio,
+.posts {
+    padding-top: 0;
+}
+
+.links {
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.posts .post,
+.button-links,
+.bio .body {
+    padding: 10px;
+}
+
+.userlist .article {
     margin-bottom: 20px;
 }
 
+.userlist .article:last-child {
+    margin-bottom: 0;
+}
+
+.posts .post a,
+.userlist .article a {
+    display: flex;
+    align-items: center;
+}
+
+.bio .body,
+.posts .post,
+.button-links,
+.userlist .article a .body,
 .userlist .article a .image {
     border: 1px solid var(--black);
+}
+
+.userlist .article a .image {
     width: 105px;
     overflow: hidden;
     height: 100px;
 }
-
+.posts .post a .body,
 .userlist .article a .body {
-    border: 1px solid var(--black);
     width: 100%;
     height: 100px;
     display: flex;
@@ -63,7 +97,13 @@ img {
     margin-left: 10px;
     padding: 0 10px;
     position: relative;
-    color: var(--black);
+}
+
+.posts .post a .body {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    padding: 0
 }
 
 .userlist .article a .body h4{
@@ -71,6 +111,7 @@ img {
     font-size: large;
 }
 
+.posts .post .body .counter,
 .userlist .article a .body .counter {
     position: absolute;
     bottom: 10px;

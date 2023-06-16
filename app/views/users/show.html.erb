@@ -2,6 +2,13 @@
     <%= render 'errors/404', value: 'There is no details about the specified user' %>
 <% else %>
     <section class='userlist'>
-        <%= render "shared/user", user: @user %>
+        <%= render 'shared/user', user: @user %>
     </section>
+    <section class='bio'>
+       <div class='body'>
+        <b>Bio</b>
+        <p><%= @user.bio %>
+       </div>
+    </section>
+    <%= render "shared/posts", user: @user %>
 <% end %>

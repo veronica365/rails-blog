@@ -1,0 +1,10 @@
+<%# Renders a user detail %>
+<article class='post'>
+    <%= link_to user_post_path(user_id: post.author_id) do  %>
+        <div class="body">
+            <b><%= post.title %></b>
+            <p><%= post.text %>
+            <div class="counter">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
+        </div>
+    <% end %>
+</article>
