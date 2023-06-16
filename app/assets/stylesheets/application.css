@@ -57,14 +57,21 @@ img {
 
 .posts .post,
 .button-links,
-.bio .body {
+.bio .body,
+.posts .comment .body {
     padding: 10px;
 }
 
-.userlist .article {
+.posts .post,
+.userlist .article,
+.posts .comment .body {
     margin-bottom: 20px;
 }
+.posts .comment .body {
+    margin-top: -15px;
+}
 
+.posts .post:last-child,
 .userlist .article:last-child {
     margin-bottom: 0;
 }
@@ -78,6 +85,7 @@ img {
 .bio .body,
 .posts .post,
 .button-links,
+.posts .comment .body,
 .userlist .article a .body,
 .userlist .article a .image {
     border: 1px solid var(--black);

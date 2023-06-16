@@ -1,16 +1,17 @@
 <%# Show posts of a user or no posts meessage %>
-<% if user.latest_posts.empty? %>
+<% if posts.empty? %>
     <%= render 'errors/404', value: 'The user has not added any posts' %>
 <% else %>
     <section class='posts'>
-        <% user.latest_posts.each do | post | %>
+        <% posts.each do | post | %>
             <%= render "shared/post", post: post %>
         <% end %>
     </section>
-
-    <div class="links">
-        <div class="button-links">
-            <%= link_to "See all posts", user_posts_path(user_id: user.id) %>
+    <% if view_more %>
+        <div class="links">
+            <div class="button-links">
+                <%= link_to "See all posts", user_posts_path(user_id: user) %>
+            </div>
         </div>
-    </div>
+    <% end %>
 <% end %>

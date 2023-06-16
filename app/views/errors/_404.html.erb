@@ -1,8 +1,15 @@
 <%# Displays content if there is no matching record(s) %>
 
-<h1>Not found</h1>
-<% if value %>    
-    <p><%= value %></p>
-<% else %>
-    This page does not exist. Please go back.
-<% end %>
+<div class="body">
+    <% 
+        has_header = header rescue nil
+        if has_header 
+    %>
+        <h1>Not found</h1>
+    <% end %>
+    <% if value %>
+            <span><%= value %></span>
+    <% else %>
+        This page does not exist. Please go back.
+    <% end %>
+</div>

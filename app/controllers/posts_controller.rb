@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   def index
-    # Post functionality to show all posts by user
+    begin
+      userid = params[:user_id]
+      @posts = Integer(userid) rescue nil
+      return @posts if @posts.nil?   
+      @user = User.find(@posts)
+      @posts = @user.posts
+    rescue ActiveRecord::RecordNotFound => e
+      @posts = nil
+    end
   end
 
   def show

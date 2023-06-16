@@ -10,5 +10,5 @@
         <p><%= @user.bio %>
        </div>
     </section>
-    <%= render "shared/posts", user: @user %>
+    <%= render "shared/posts", user: @user, posts: @user.latest_posts, view_more: true %>
 <% end %>

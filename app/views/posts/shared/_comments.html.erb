@@ -1,0 +1,10 @@
+<%# Show the details about the comments by a user %>
+<% if comments.empty? %>
+    <%= render 'errors/404', value: 'There are no comments for this blog post' %>
+<% else %>
+    <div class="body">
+        <% comments.each do | comment | %>
+            <div><%= comment.author.name %>: <%= comment.text %> </div>
+        <% end %>
+    </div>
+<% end %>
