@@ -6,4 +6,9 @@
         <%= render 'shared/user', user: @user %>
     </section>
     <%= render "shared/posts", user: @user, posts: @posts, view_more: false %>
+    <div class="links">
+        <div class="button-links">
+            <%= link_to "Pagination", user_posts_path(user_id: @user.id) %>
+        </div>
+    </div>
 <% end %>
