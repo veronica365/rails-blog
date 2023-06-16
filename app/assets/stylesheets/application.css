@@ -49,6 +49,15 @@ img {
     padding-top: 0;
 }
 
+.detail {
+    margin-top: 10px;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .links {
     display: flex;
     align-items: center;

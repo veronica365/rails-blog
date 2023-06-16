@@ -1,8 +1,21 @@
-<h1>Here is a post by id for the given user id</h1>
-
-<ul>
-    <li><a href="/users">Users</a></li>
-    <li><a href="/users/id">Users by id</a></li>
-    <li><a href="/users/id/posts">Posts for a users with given id</a></li>
-    <li><a href="/users/id/posts/id">Posts by given id for a users by given id</a></li>
-</ul>
+<% 
+    post = @post rescue nil
+    if post.nil? 
+%>
+    <%= render 'errors/404', value: 'There blog post specified by user does not exist', header: true %>
+<% else %>
+<section class='posts detail post'>
+    <article class='post'>
+        <div class="body">
+            <div class="detail-header">
+                <span><%= @post.title %> by <%= @post.author.name %></span>
+                <span>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></span>
+            </div>
+            <p><%= @post.text %>
+        </div>
+    </article>
+    <article class='comment'>
+        <%= render "posts/shared/comments", comments: @post.comments %>
+    </article>
+</section>
+<% end %>
