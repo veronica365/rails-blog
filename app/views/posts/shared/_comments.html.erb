@@ -3,7 +3,7 @@
     <%= render 'errors/404', value: 'There are no comments for this blog post' %>
 <% else %>
     <div class="body">
-        <% comments.each do | comment | %>
+        <% comments.includes([:author]).each do | comment | %>
             <div><%= comment.author.name %>: <%= comment.text %> </div>
         <% end %>
     </div>
