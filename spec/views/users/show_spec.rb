@@ -13,7 +13,7 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       expect(page).to have_css('h1', text: 'Not found')
       expect(page).to have_css('span', text: 'The specified user has no created blog posts')
     end
-    
+
     it 'should show a 404 page if user id does not even exist' do
       visit 'users/1000'
       expect(page).to have_css('h1', text: 'Not found')
@@ -35,22 +35,22 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       @user = User.create(name: @name, bio: @bio, photo: @photo)
       visit "users/#{@user.id}"
     end
-    
+
     it 'should see the see the user\'s profile picture.' do
       expect(page).to have_selector('img', count: 1);
       expect(page).to have_css("img[src='#{@photo}']")
     end
-    
+
     it 'should see the user\'s username.' do
       expect(page).to have_selector('h4', count: 1);
       expect(page).to have_css('h4', text: @name)
-    end  
+    end
 
     it 'should see the number of posts each user has written.' do
       expect(page).to have_selector('article .body .counter', count: 1);
       expect(page).to have_selector('.counter', text: 'Number of posts: 0')
     end
-    
+
     it 'should see the user\'s bio' do
       expect(page).to have_selector('section.bio .body', count: 1);
       expect(page).to have_selector('section.bio .body b', count: 1);
@@ -58,15 +58,15 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       expect(page).to have_selector('section.bio .body b', text: 'Bio');
       expect(page).to have_selector('section.bio .body p', text: @bio);
     end
-    
+
     it 'should see a related message if user has not posts' do
       expect(page).to have_selector('.body span', count: 1);
       expect(page).to have_selector('.body span', text: 'The user has not added any posts')
     end
-    
+
     it 'should click on a user and be am redirected to that user\'s show page' do
       expect(page).to have_css("a[href='/users/#{@user.id}']")
-      
+
       page.find('a').click
       expect(page).to have_current_path("/users/#{@user.id}");
     end
@@ -79,7 +79,7 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       @bio = 'Software Developer'
       @user = User.create(name: @name, bio: @bio, photo: @photo)
     end
-    
+
     it 'should see the user\'s first 3 posts' do
       (1..10).each do |index|
         Post.create(author: @user, title: "title #{index}", text: "This is a blog post #{index}")
@@ -90,7 +90,7 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       expect(page).to have_selector('.links .button-links', text: 'See all posts')
       expect(page).to have_content('Comments: 0, Likes: 0');
     end
-    
+
     it 'should see a button that lets me view all of a user\'s posts' do
       (1..2).each do |index|
         Post.create(author: @user, title: "title #{index}", text: "This is a blog post #{index}")
@@ -102,7 +102,7 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
 
     it 'should redirect me to that post\'s show page, when I click a user\'s post' do
       blog = Post.create(author: @user, title: "title test", text: "This is a blog post test")
-      
+
       visit "users/#{@user.id}"
       expect(page).to have_selector('article.post .body .counter', count: 1);
       expect(page).to have_selector('.links .button-links a', text: 'See all posts')
@@ -110,8 +110,8 @@ RSpec.describe 'views/users/show.hmtl.erb', type: :view do
       page.find('section.posts .post a').click
       expect(page).to have_current_path("/users/#{@user.id}/posts/#{blog.id}");
     end
-    
-    it 'Should redirect me to the user\'s post\'s index page, when I click to see all posts.' do      
+
+    it 'Should redirect me to the user\'s post\'s index page, when I click to see all posts.' do
       Post.create(author: @user, title: "title test", text: "This is a blog post test")
       visit "users/#{@user.id}"
       expect(page).to have_selector('.links .button-links a', text: 'See all posts')

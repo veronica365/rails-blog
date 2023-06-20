@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'views/users/index.hmtl.erb', type: :view do
-  
   describe 'user index page when there are no users' do
     before :context do
       Like.delete_all()
@@ -10,13 +9,13 @@ RSpec.describe 'views/users/index.hmtl.erb', type: :view do
       User.delete_all()
       visit 'users'
     end
-    
+
     it 'should show a 404 page if there are no users' do
       expect(page).to have_css('h1', text: 'Not found')
       expect(page).to have_css('span', text: 'There are no registered users at the moment')
     end
   end
-  
+
   describe 'user index page when there are users' do
     before :each do
       @photo = 'https://source.unsplash.com/random/900x700/?user'
@@ -59,7 +58,7 @@ RSpec.describe 'views/users/index.hmtl.erb', type: :view do
 
     it 'should see the number of posts each user has written.' do
       Post.create(author: @user, title: 'AI and the future of programming',
-                    text: 'Is this the end for developer jobs or the start of a new era')
+                  text: 'Is this the end for developer jobs or the start of a new era')
       visit 'users'
       expect(page).to have_selector('article .body .counter', count: 1);
       expect(page).to have_selector('.counter', text: 'Number of posts: 1')
