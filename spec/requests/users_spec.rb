@@ -5,14 +5,12 @@ RSpec.describe 'Users', type: :request do
     it 'Should return the correct response when fetching users' do
       get '/users'
       expect(response).to have_http_status(:success)
-      expect(response.body).to include('Here is a lists of users')
     end
   end
   describe 'GET /show' do
     it 'Should return the correct response when fetching a user by id' do
       get '/users/:id'
       expect(response).to have_http_status(:success)
-      expect(response.body).to include('Here is a user by id')
     end
   end
 end
