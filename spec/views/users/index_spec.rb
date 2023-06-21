@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'views/users/index.hmtl.erb', type: :view do
   describe 'user index page when there are no users' do
     before :context do
-      Like.delete_all()
-      Comment.delete_all()
-      Post.delete_all()
-      User.delete_all()
+      Like.delete_all
+      Comment.delete_all
+      Post.delete_all
+      User.delete_all
       visit 'users'
     end
 
@@ -26,17 +26,17 @@ RSpec.describe 'views/users/index.hmtl.erb', type: :view do
     end
 
     it 'should see the username of all other users' do
-      expect(page).to have_selector('h4', count: 1);
+      expect(page).to have_selector('h4', count: 1)
       expect(page).to have_css('h4', text: @name)
     end
 
     it 'should see the profile picture for each user.' do
-      expect(page).to have_selector('img', count: 1);
+      expect(page).to have_selector('img', count: 1)
       expect(page).to have_css("img[src='#{@photo}']")
     end
 
     it 'should see the number of posts each user has written.' do
-      expect(page).to have_selector('article .body .counter', count: 1);
+      expect(page).to have_selector('article .body .counter', count: 1)
       expect(page).to have_selector('.counter', text: 'Number of posts: 0')
     end
 
@@ -44,7 +44,7 @@ RSpec.describe 'views/users/index.hmtl.erb', type: :view do
       expect(page).to have_css("a[href='/users/#{@user.id}']")
 
       page.find('a').click
-      expect(page).to have_current_path("/users/#{@user.id}");
+      expect(page).to have_current_path("/users/#{@user.id}")
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe 'views/users/index.hmtl.erb', type: :view do
       Post.create(author: @user, title: 'AI and the future of programming',
                   text: 'Is this the end for developer jobs or the start of a new era')
       visit 'users'
-      expect(page).to have_selector('article .body .counter', count: 1);
+      expect(page).to have_selector('article .body .counter', count: 1)
       expect(page).to have_selector('.counter', text: 'Number of posts: 1')
     end
   end
