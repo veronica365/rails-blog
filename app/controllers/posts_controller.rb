@@ -11,7 +11,7 @@ class PostsController < ApplicationController
       return @posts if @posts.nil?
 
       @user = User.find(@posts)
-      @posts = @user.posts
+      @posts = @user.posts.includes(:comments)
     rescue ActiveRecord::RecordNotFound
       @posts = nil
     end
