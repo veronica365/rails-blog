@@ -32,7 +32,7 @@ RSpec.describe 'Post', type: :system do
     end
 
     it "displays the number of posts the user has written" do
-      expect(page).to have_content(user.post_counter)
+      expect(page).to have_content(user.posts_counter)
     end
 
     it "displays a post's title" do
