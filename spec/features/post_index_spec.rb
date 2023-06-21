@@ -23,40 +23,40 @@ RSpec.describe 'Post', type: :system do
   describe 'Post index page' do
     before { visit user_posts_path(user_id: user.id) }
 
-    it "displays the user's profile picture" do
+    it 'displays the user\'s profile picture' do
       expect(page).to have_css('img')
     end
 
-    it "displays the user's username" do
+    it 'displays the user\'s username' do
       expect(page).to have_content(user.name)
     end
 
-    it "displays the number of posts the user has written" do
+    it 'displays the number of posts the user has written' do
       expect(page).to have_content(user.posts_counter)
     end
 
-    it "displays a post's title" do
+    it 'displays a post\'s title' do
       expect(page).to have_content(post.title)
     end
 
-    it "displays some of the post's body" do
+    it 'displays some of the post\'s body' do
       expect(page).to have_content(post.text)
     end
 
-    it "displays the first comments on a post" do
+    it 'displays the first comments on a post' do
       comment = Comment.create(author_id: user.id, post_id: post.id, text: 'I like it')
       expect(page).to have_content(comment.text)
     end
 
-    it "displays the number of comments a post has" do
+    it 'displays the number of comments a post has' do
       expect(page).to have_content(post.comments_counter)
     end
 
-    it "displays the number of likes a post has" do
+    it 'displays the number of likes a post has' do
       expect(page).to have_content(post.likes_counter)
     end
 
-    it "redirects to the post's show page when clicked" do
+    it 'redirects to the post\'s show page when clicked' do
       click_on post.title
       expect(current_path).to eq(user_post_path(user.id, post.id))
     end
