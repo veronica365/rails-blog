@@ -42,7 +42,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
     end
 
     it 'should see some of the post\'s body part one' do
-      body = (0..1000).to_a.join('')
+      body = (0..1000).to_a
       Post.create(author: @user, title: 'test title', text: body)
 
       visit user_posts_path(@user)
@@ -51,7 +51,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
     end
 
     it 'should see some of the post\'s body part two' do
-      body = (0..50).to_a.join('')
+      body = (0..50).to_a
       Post.create(author: @user, title: 'test text 100', text: body)
 
       visit user_posts_path(@user)
@@ -73,7 +73,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
 
     it 'should see how many comments a post has.' do
       post = Post.create(author: @user, title: 'test comment', text: 'body')
-      comment = Comment.create(author: @user, post: post, text: 'Test comment')
+      Comment.create(author: @user, post: post, text: 'Test comment')
 
       visit user_posts_path(@user)
       expect(page).to have_css('section.posts .post .body .counter', count: 1)
@@ -90,7 +90,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
     end
 
     it 'should see a section for pagination if there are more posts than fit on the view' do
-      post = Post.create(author: @user, title: 'test comment', text: 'body')
+      Post.create(author: @user, title: 'test comment', text: 'body')
 
       visit user_posts_path(@user)
       expect(page).to have_selector('.links .button-links', text: 'Pagination')

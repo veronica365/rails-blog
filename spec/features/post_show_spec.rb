@@ -24,38 +24,38 @@ RSpec.describe Post, type: :system do
   before { post.save }
 
   describe 'Post show page' do
-    it "displays a post's title" do
+    it 'displays a post\'s title' do
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(post.title)
     end
 
-    it "displays the user who wrote the post" do
+    it 'displays the user who wrote the post' do
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(user.name)
     end
 
-    it "displays the number of comments the post has" do
+    it 'displays the number of comments the post has' do
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(post.comments_counter)
     end
 
-    it "displays the number of likes the post has" do
+    it 'displays the number of likes the post has' do
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(post.likes_counter)
     end
 
-    it "displays the post's body" do
+    it 'displays the post\'s body' do
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(post.text)
     end
 
-    it "displays the username of each commentor" do
+    it 'displays the username of each commentor' do
       comment = Comment.new(author_id: user.id, post_id: post.id, text: 'I like it')
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(comment.author.name)
     end
 
-    it "displays the comment each commentor left" do
+    it 'displays the comment each commentor left' do
       comment = Comment.new(author_id: user.id, post_id: post.id, text: 'I like it')
       visit user_post_path(user.id, post.id)
       expect(page).to have_content(comment.text)
