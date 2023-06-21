@@ -3,7 +3,7 @@
     <%= render 'errors/404', value: 'The user has not added any posts' %>
 <% else %>
     <section class='posts'>
-        <% posts.each do | post | %>
+        <% posts.includes(:comments).each do | post | %>
             <%= render "shared/post", post: post %>
         <% end %>
     </section>
