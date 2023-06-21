@@ -42,7 +42,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
     end
 
     it 'should see some of the post\'s body part one' do
-      body = (0..1000).to_a
+      body = (0..1000).to_a.join('-')
       Post.create(author: @user, title: 'test title', text: body)
 
       visit user_posts_path(@user)
@@ -51,7 +51,7 @@ RSpec.describe 'views/posts/index.hmtl.erb', type: :view do
     end
 
     it 'should see some of the post\'s body part two' do
-      body = (0..50).to_a
+      body = (0..50).to_a.join('-')
       Post.create(author: @user, title: 'test text 100', text: body)
 
       visit user_posts_path(@user)
