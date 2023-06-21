@@ -127,6 +127,13 @@ To run tests, run the following command: Install through : gem install rspec
 - GitHub: [@veronica365](https://github.com/veronica365)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/william-sserubiri-veronica/)
 
+👤 **Caren Koroeny**
+
+- GitHub: [@carensiya ](https://github.com/Caren-Koroeny)
+- Twitter: [@carensiya](https://twitter.com/home)
+- LinkedIn: [@carensiya](www.linkedin.com/in/caren-siya-a89712180)
+
+
 <p align="right">(<a href="#readme-top"></a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
