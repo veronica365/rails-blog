@@ -1,24 +1,17 @@
 require 'rails_helper'
-require 'capybara/rspec'
 
-RSpec.describe 'Post', type: :system do
-  let(:user) do
-    User.create(
-      name: 'Test User 1',
-      bio: 'Software Developer',
-      photo: 'https://source.unsplash.com/random/900x700/?user'
-    )
-  end
+RSpec.describe 'Post index', type: :feature do
+  user = User.create(
+    name: 'Test User 1',
+    bio: 'Software Developer',
+    photo: 'https://source.unsplash.com/random/900x700/?user'
+  )
 
-  let(:post) do
-    Post.create(
-      author: user,
-      title: 'AI and the future of programming',
-      text: 'Is this the end for developer jobs or the start of a new era'
-    )
-  end
-
-  before { post }
+  post = Post.create(
+    author: user,
+    title: 'AI and the future of programming',
+    text: 'Is this the end for developer jobs or the start of a new era'
+  )
 
   describe 'Post index page' do
     before { visit user_posts_path(user_id: user.id) }
@@ -32,7 +25,7 @@ RSpec.describe 'Post', type: :system do
     end
 
     it 'displays the number of posts the user has written' do
-      expect(page).to have_content(user.posts_counter)
+      expect(page).to have_content(user.post_counter)
     end
 
     it 'displays a post\'s title' do
@@ -45,6 +38,7 @@ RSpec.describe 'Post', type: :system do
 
     it 'displays the first comments on a post' do
       comment = Comment.create(author_id: user.id, post_id: post.id, text: 'I like it')
+      visit user_posts_path(user_id: user.id)
       expect(page).to have_content(comment.text)
     end
 
