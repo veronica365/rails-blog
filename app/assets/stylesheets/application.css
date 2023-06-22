@@ -69,6 +69,10 @@ img {
   margin-bottom: 30px;
 }
 
+form.auth-form {
+  width: 300px;
+}
+
 .button-links,
 .posts .post,
 .bio .body {
