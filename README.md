@@ -120,7 +120,7 @@ To run tests, run the following command: Install through : gem install rspec
 
 <p align="right">(<a href="#readme-top"></a>)</p>
 
-## 👤 Author <a name="authors"></a>
+## 👤 Authors <a name="authors"></a>
 
 👤 **Williams Serubiri**
 
