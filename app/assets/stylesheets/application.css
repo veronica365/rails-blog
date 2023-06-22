@@ -102,7 +102,6 @@ form.auth-form {
   border: 1px solid var(--black);
 }
 
-.posts .post a,
 .userlist .article a {
   display: flex;
   align-items: center;
@@ -144,7 +143,6 @@ form.auth-form {
 
 .posts .post .body .counter,
 .userlist .article a .body .counter {
-  position: absolute;
   bottom: 10px;
   right: 10px;
 }
