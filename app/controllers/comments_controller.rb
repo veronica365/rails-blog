@@ -1,10 +1,20 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
 
+  before_action :authenticate_api_request, only: [:create]
   before_action :current_post
 
   def new
     @comment = Comment.new
+  end
+
+  def index
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:post_id])
+    @comments = @post.comments
+    respond_to do |format|
+      format.html
+      format.json { render json: @comments }
+    end
   end
 
   def create
