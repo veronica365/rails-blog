@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     userid = params[:user_id]
     begin
@@ -41,11 +43,32 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author = @current_user
+    @post.author = current_user
     if @post.save
-      redirect_to "/users/#{@current_user.id}/posts"
+      redirect_to "/users/#{current_user.id}/posts"
     else
       render :new
+    end
+  end
+
+  def destroy
+    begin
+      @post = Integer(params[:id])
+    rescue ArgumentError
+      @post = nil
+    end
+
+    begin
+      return @post if @post.nil?
+
+      @post = Post.find(@post)
+      if @post.destroy
+        redirect_to "/users/#{current_user.id}/posts"
+      else
+        render 'errors/404', value: 'The post no longer exists'
+      end
+    rescue ActiveRecord::RecordNotFound
+      @post = nil
     end
   end
 

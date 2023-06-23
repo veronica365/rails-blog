@@ -5,6 +5,6 @@
         <%= form.text_field :title %>
         <%= form.text_area :text %>
         <%= form.submit "Submit" %>
-        <%= link_to "cancel", user_posts_path(user_id: @current_user.id), class:"btn btn-default btn-outline-dark" %>
+        <%= link_to "cancel", user_posts_path(user_id: current_user.id), class:"btn btn-default btn-outline-dark" %>
     <% end %>
 </div>

@@ -14,5 +14,13 @@ class Post < ApplicationRecord
   def increment_post_counts
     author.increment!(:post_counter)
   end
+
+  def decrement_post_counts
+    unless author.post_counter <= 0
+      author.decrement!(:post_counter)
+    end
+  end
+
   after_create :increment_post_counts
+  before_destroy :decrement_post_counts
 end

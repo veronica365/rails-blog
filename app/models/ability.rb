@@ -4,13 +4,26 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Post, public: true
+    # Check logged in or guest user
+    user ||= User.new
 
-    return unless user.present?  # additional permissions for logged in users (they can read their own posts)
-    can :read, Post, user: user
+    # additional permissions for administrators
+    return can :manage, :all if user.role == 'admin'
+    
+    # additional permissions for logged in users      
+    can :create, Post, author: user
+    can :create, Comment, author: user
+    can :create, Like, author: user
+    
+    can :destroy, Post do | post |
+      post.author == user
+    end
+    can :destroy, Comment do | comment |
+      comment.author == user
+    end
 
-    return unless user.admin?  # additional permissions for administrators
-    can :read, Post
+    # No permissions for other users
+    can :read, :all
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
   end
 end
