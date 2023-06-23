@@ -7,9 +7,9 @@ class Comment < ApplicationRecord
   end
 
   def decrement_comment_counts
-    unless post.comments_counter <= 0
-      post.decrement!(:comments_counter)
-    end
+    return unless post.comments_counter.positive?
+
+    post.decrement!(:comments_counter)
   end
 
   after_create :increment_comment_counters

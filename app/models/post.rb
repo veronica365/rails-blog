@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-  has_many :comments, foreign_key: 'post_id'
-  has_many :likes, foreign_key: 'post_id'
+  has_many :comments, foreign_key: 'post_id', dependent: :destroy
+  has_many :likes, foreign_key: 'post_id', dependent: :destroy
   belongs_to :author, class_name: 'User'
 
   validates :title, presence: true, length: { maximum: 250 }
@@ -16,9 +16,9 @@ class Post < ApplicationRecord
   end
 
   def decrement_post_counts
-    unless author.post_counter <= 0
-      author.decrement!(:post_counter)
-    end
+    return unless author.post_counter.positive?
+
+    author.decrement!(:post_counter)
   end
 
   after_create :increment_post_counts
