@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  load_and_authorize_resource
   before_action :current_post
 
   def new
@@ -6,7 +7,7 @@ class LikesController < ApplicationController
   end
 
   def create
-    @like = @current_post.likes.new(author_id: @current_user.id, post_id: @current_post.id)
+    @like = @current_post.likes.new(author_id: current_user.id, post_id: @current_post.id)
 
     if @like.save
       redirect_to "/users/#{@current_post.author.id}/posts/#{@current_post.id}"
@@ -23,7 +24,7 @@ class LikesController < ApplicationController
       @postid = nil
     end
 
-    return redirect_to "/users/#{@current_user.id}/posts" if @postid.nil?
+    return redirect_to "/users/#{current_user.id}/posts" if @postid.nil?
 
     @current_post = Post.find(@postid)
   end
