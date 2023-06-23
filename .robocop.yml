@@ -58,3 +58,5 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
+inherit_gem:
+  rswag-specs: .rubocop_rspec_alias_config.yml

@@ -1,0 +1,88 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users.json":
+    get:
+      summary: view all users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  photo:
+                    type: string
+                  post_counter:
+                    type: integer
+                  email:
+                    type: string
+                  role:
+                    type: string
+                  bio:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - email
+                - bio
+  "/users/{user_id}.json":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      - Single user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  photo:
+                    type: string
+                  post_counter:
+                    type: integer
+                  email:
+                    type: string
+                  role:
+                    type: string
+                  bio:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - id
+                - email
+                - bio
+        '404':
+          description: user not found
+        '406':
+          description: unsupported accept header
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
