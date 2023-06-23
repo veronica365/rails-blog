@@ -1,10 +1,18 @@
 <%# Renders a user detail %>
 <article class='post'>
-    <%= link_to user_post_path(user_id: post.author_id, id: post.id) do  %>
-        <div class="body">
+    <%= link_to user_post_path(user_id: post.author_id, id: post.id), class: 'd-block flex-column' do  %>
+        <div class="body d-flex flex-column justify-content-start">
             <b><%= post.title %></b>
             <p><%= "#{post.text[0..157]}#{' ...' if post.text.length() > 157}" %></p>
-            <div class="counter">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
+            <div class="counter d-flex ml-auto align-items-center">
+                Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %>
+                <% if can? :destroy, post %>
+                    <a><%= button_to user_post_path(user_id: post.author_id, id: post.id), method: :delete, class: 'ml-3 btn btn-default btn-outline-dark', data: { confirm: 'Are you sure?' } do %>
+                        <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                    </a>
+                <% end %>
+            </div>
         </div>
     <% end %>
 </article>

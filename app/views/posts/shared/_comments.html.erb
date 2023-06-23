@@ -4,7 +4,16 @@
 <% else %>
     <div class="body">
         <% comments.includes([:author]).each do | comment | %>
-            <div><%= comment.author.name %>: <%= comment.text %> </div>
+            <div class="d-flex flex-column">
+                <%= comment.author.name %>: <%= comment.text %>
+                <% if can? :destroy, comment %>
+                    <a class="ml-auto">
+                        <%= button_to user_post_comment_path(user_id: comment.post.author_id, post_id: comment.post_id, id: comment.id), method: :delete, class: 'btn btn-default btn-outline-dark', data: { confirm: 'Are you sure?' } do %>
+                            <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                    </a>
+                <% end %>
+            </div>
         <% end %>
     </div>
 <% end %>
