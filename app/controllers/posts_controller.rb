@@ -14,6 +14,10 @@ class PostsController < ApplicationController
 
       @user = User.find(@posts)
       @posts = @user.posts.includes(:comments)
+      respond_to do |format|
+        format.html
+        format.json { render json: @posts }
+      end
     rescue ActiveRecord::RecordNotFound
       @posts = nil
     end
@@ -32,6 +36,10 @@ class PostsController < ApplicationController
 
       @post = Post.find(@post)
       @post = nil unless @post.author.id == userid
+      respond_to do |format|
+        format.html
+        format.json { render json: @post }
+      end
     rescue ActiveRecord::RecordNotFound
       @post = nil
     end
