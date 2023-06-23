@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
   end
 
   def show
@@ -17,6 +21,10 @@ class UsersController < ApplicationController
       return @user if @user.nil?
 
       @user = User.find(userid)
+      respond_to do |format|
+        format.html
+        format.json { render json: @user }
+      end
     rescue ActiveRecord::RecordNotFound
       @user = nil
     end
