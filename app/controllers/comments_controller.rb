@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   before_action :authenticate_api_request, only: [:create]
   before_action :current_post
 
@@ -18,11 +17,14 @@ class CommentsController < ApplicationController
   end
 
   def create
+    current_user ||= @api_user
     @comments = @current_post.comments.new(comment_params)
     @comments.post_id = @current_post.id
     @comments.author_id = current_user.id
 
     if @comments.save
+      return render json: @current_post.comments unless request.format.html?
+
       redirect_to "/users/#{@current_post.author_id}/posts/#{@current_post.id}"
     else
       render :new
@@ -62,13 +64,16 @@ class CommentsController < ApplicationController
 
   def current_post
     @postid = params[:post_id]
+    @userid = params[:user_id]
     begin
       @postid = Integer(@postid)
+      @userid = params[:user_id]
     rescue ArgumentError
       @postid = nil
+      @userid = nil
     end
 
-    return redirect_to "/users/#{current_user.id}/posts" if @postid.nil?
+    return redirect_to "/users/#{@userid}/posts" if @postid.nil? || @userid.nil?
 
     @current_post = Post.find(@postid)
   end
