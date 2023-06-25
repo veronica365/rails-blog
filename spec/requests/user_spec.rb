@@ -5,22 +5,22 @@ RSpec.describe 'user', type: :request do
     get 'view all users' do
       tags 'Users'
       produces 'application/json'
- 
-      response '200', 'user found' do
-        schema type: :object,       
-          properties: {
-            id: { type: :integer },
-            name: { type: :string },
-            photo: { type: :string },
-            post_counter: { type: :integer },
-            email: { type: :string },
-            role: { type: :string },
-            bio: { type: :string },
-            content: { type: :string }
-          },
-          required: [ 'id', 'email', 'bio' ]
 
-        let(:id) { User.create(name: 'foo', email: 'email@foo.com', bio: "test bio").id }
+      response '200', 'user found' do
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 photo: { type: :string },
+                 post_counter: { type: :integer },
+                 email: { type: :string },
+                 role: { type: :string },
+                 bio: { type: :string },
+                 content: { type: :string }
+               },
+               required: %w[id email bio]
+
+        let(:id) { User.create(name: 'foo', email: 'email@foo.com', bio: 'test bio').id }
         run_test!
       end
     end
@@ -33,20 +33,20 @@ RSpec.describe 'user', type: :request do
       parameter name: :user_id, in: :path, type: :string
 
       response '200', 'user found' do
-        schema type: :object,       
-          properties: {
-            id: { type: :integer },
-            name: { type: :string },
-            photo: { type: :string },
-            post_counter: { type: :integer },
-            email: { type: :string },
-            role: { type: :string },
-            bio: { type: :string },
-            content: { type: :string }
-          },
-          required: [ 'id', 'email', 'bio' ]
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 photo: { type: :string },
+                 post_counter: { type: :integer },
+                 email: { type: :string },
+                 role: { type: :string },
+                 bio: { type: :string },
+                 content: { type: :string }
+               },
+               required: %w[id email bio]
 
-        let(:id) { User.create(name: 'foo', email: 'email@foo.com', bio: "test bio").id }
+        let(:id) { User.create(name: 'foo', email: 'email@foo.com', bio: 'test bio').id }
         run_test!
       end
 
@@ -56,7 +56,7 @@ RSpec.describe 'user', type: :request do
       end
 
       response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+        let(:Accept) { 'application/foo' }
         run_test!
       end
     end

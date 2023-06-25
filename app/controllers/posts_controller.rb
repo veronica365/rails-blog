@@ -1,47 +1,24 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource
+  check_authorization
+  skip_authorization_check
 
   def index
-    userid = params[:user_id]
-    begin
-      @posts = Integer(userid)
-    rescue ArgumentError
-      @post = nil
-    end
-
-    begin
-      return @posts if @posts.nil?
-
-      @user = User.find(@posts)
-      @posts = @user.posts.includes(:comments)
-      respond_to do |format|
-        format.html
-        format.json { render json: @posts }
-      end
-    rescue ActiveRecord::RecordNotFound
-      @posts = nil
+    @user = User.find(@user_id)
+    @posts = @user.posts.includes(:comments)
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
     end
   end
 
   def show
-    begin
-      userid = Integer(params[:user_id])
-      @post = Integer(params[:id])
-    rescue ArgumentError
-      @post = nil
-    end
-
-    begin
-      return @post if @post.nil? || userid.nil?
-
-      @post = Post.find(@post)
-      @post = nil unless @post.author.id == userid
-      respond_to do |format|
-        format.html
-        format.json { render json: @post }
-      end
-    rescue ActiveRecord::RecordNotFound
-      @post = nil
+    @post = Post.find(@post_id)
+    # TODO: Add check to validate if the user_id in url matches the post author
+    # Useless but its what we want to ensure post_author and current user in the url match
+    # @post = nil unless @post.author.id == userid
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
     end
   end
 
@@ -60,24 +37,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    begin
-      @post = Integer(params[:id])
-    rescue ArgumentError
-      @post = nil
-    end
+    @post = Post.find(@post)
+    return redirect_to "/users/#{current_user.id}/posts" if @post.destroy
 
-    begin
-      return @post if @post.nil?
-
-      @post = Post.find(@post)
-      if @post.destroy
-        redirect_to "/users/#{current_user.id}/posts"
-      else
-        render 'errors/404', value: 'The post no longer exists'
-      end
-    rescue ActiveRecord::RecordNotFound
-      @post = nil
-    end
+    render 'errors/404', value: 'The post no longer exists'
   end
 
   private

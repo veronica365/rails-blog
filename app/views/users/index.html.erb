@@ -1,4 +1,4 @@
-<% if @users.empty? %>
+<% if @users.nil? || @users.empty? %>
     <%= render 'errors/404', value: 'There are no registered users at the moment', header: true %>
 <% else %>
     <section class='userlist'>

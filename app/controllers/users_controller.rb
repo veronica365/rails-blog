@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  check_authorization
+  skip_authorization_check
 
   def index
     @users = User.all
@@ -10,23 +11,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    userid = params[:id]
-    begin
-      @user = Integer(userid)
-    rescue ArgumentError
-      @user = nil
-    end
-
-    begin
-      return @user if @user.nil?
-
-      @user = User.find(userid)
-      respond_to do |format|
-        format.html
-        format.json { render json: @user }
-      end
-    rescue ActiveRecord::RecordNotFound
-      @user = nil
+    @user = User.find(@user_id)
+    respond_to do |format|
+      format.html
+      format.json { render json: @user }
     end
   end
 end

@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
-  load_and_authorize_resource
-
+  check_authorization
+  skip_authorization_check
   before_action :current_post
 
   def new
@@ -9,24 +9,12 @@ class LikesController < ApplicationController
 
   def create
     @like = @current_post.likes.new(author_id: current_user.id, post_id: @current_post.id)
+    return redirect_to "/users/#{@current_post.author.id}/posts/#{@current_post.id}" if @like.save
 
-    if @like.save
-      redirect_to "/users/#{@current_post.author.id}/posts/#{@current_post.id}"
-    else
-      render.new
-    end
+    render.new
   end
 
   def current_post
-    @postid = params[:post_id]
-    begin
-      @postid = Integer(@postid)
-    rescue ArgumentError
-      @postid = nil
-    end
-
-    return redirect_to "/users/#{current_user.id}/posts" if @postid.nil?
-
-    @current_post = Post.find(@postid)
+    @current_post = Post.find(@post_id)
   end
 end

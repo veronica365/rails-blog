@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:post_id])
     @comments = @post.comments
+
     respond_to do |format|
       format.html
       format.json { render json: @comments }
@@ -32,28 +33,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    begin
-      @comment = Integer(params[:id])
-      @user = Integer(params[:user_id])
-      @post = Integer(params[:post_id])
-    rescue ArgumentError
-      @comment = nil
-      @post = nil
-      @comment = nil
-    end
+    @comment = Comment.find_by(id: @comment_id, post_id: @post_id)
+    return redirect_to "/users/#{@user_id}/posts/#{@post_id}" if @comment.destroy
 
-    begin
-      return @comment if @comment.nil? || @post.nil? || @user.nil?
-
-      @comment = Comment.find_by(id: @comment, post_id: @post)
-      if @comment.destroy
-        redirect_to "/users/#{@user}/posts/#{@post}"
-      else
-        render 'errors/404', value: 'The comment no longer exists'
-      end
-    rescue ActiveRecord::RecordNotFound
-      @post = nil
-    end
+    render 'errors/404', value: 'The comment no longer exists'
   end
 
   private
@@ -63,18 +46,6 @@ class CommentsController < ApplicationController
   end
 
   def current_post
-    @postid = params[:post_id]
-    @userid = params[:user_id]
-    begin
-      @postid = Integer(@postid)
-      @userid = params[:user_id]
-    rescue ArgumentError
-      @postid = nil
-      @userid = nil
-    end
-
-    return redirect_to "/users/#{@userid}/posts" if @postid.nil? || @userid.nil?
-
-    @current_post = Post.find(@postid)
+    @current_post = Post.find(@post_id)
   end
 end
